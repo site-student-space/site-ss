@@ -56,4 +56,10 @@ public class Curso {
 		this.valor = valor;
 	}
 
+	@Override
+	public String toString() {
+		return "Curso [id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", data=" + data + ", valor=" + valor
+				+ "]";
+	}
+
 }
