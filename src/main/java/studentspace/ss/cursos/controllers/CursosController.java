@@ -16,7 +16,7 @@ public class CursosController {
 	
 	@RequestMapping("/cursos/form")
 	public String form() {
-		return "formCurso";
+		return "cursos/formCurso";
 	}
 
 	@PostMapping("/cursos")
@@ -25,6 +25,6 @@ public class CursosController {
 		System.out.println(curso);
 		cr.save(curso);
 		
-		return "curso-adicionado";
+		return "cursos/curso-adicionado";
 	}
 }
