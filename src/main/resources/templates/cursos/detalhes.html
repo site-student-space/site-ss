@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<!-- Compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+<title>STUDENT SPACE</title>
+</head>
+<body>
+	<div th:replace="~{menu :: menu}"></div>
+
+	<div class="container">
+		<h1>Detalhes do Curso</h1>
+
+		<div class="row">
+	    	<div class="col s12">
+	      		<div class="card blue-grey darken-1">
+	        		<div class="card-content white-text">
+	          			<span class="card-title">Curso</span>
+	          			<p><strong>Id: </strong><span th:text="${curso.id}">1</span></p>
+	          			<p><strong>Nome: </strong><span th:text="${curso.nome}">Curso de teste</span></p>
+	          			<p><strong>Descrição: </strong><span th:text="${curso.descricao}">Testando detalhes</span></p>
+	          			<p><strong>Data: </strong><span th:text="${curso.data}">27/05/2023</span></p>
+	          			<p><strong>Valor: </strong><span th:text="${curso.valor}">60,00R$</span></p>
+	        		</div>
+	       	 		<div class="card-action">
+	          			<a href="#">This is a link</a>
+	         			<a href="#">This is a link</a>
+	        		</div>
+	      		</div>
+			</div>
+		</div>
+		
+	</div>
+</body>
+</html>
