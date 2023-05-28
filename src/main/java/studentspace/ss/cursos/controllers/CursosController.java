@@ -85,4 +85,33 @@ public class CursosController {
 		
 		return "redirect:/cursos/lista/{idCurso}";
 	}
+	
+	@GetMapping("/lista/{id}/remover")
+	public String apagarCurso(@PathVariable Long id) {
+		
+		Optional<Curso> opt = cr.findById(id);
+		
+		if (!opt.isEmpty()) {
+			Curso curso = opt.get();
+			
+			List<Conteudo> conteudos = ctr.findByCurso(curso);
+			
+			ctr.deleteAll(conteudos);
+			cr.delete(curso);
+		}
+		
+		return "redirect:/cursos/lista";
+	}
+	
+	@GetMapping("/lista/{idCurso}/conteudos/{idConteudo}/remover")
+	public String apagarConteudo(@PathVariable Long idCurso, @PathVariable Long idConteudo) {
+		
+		Optional<Conteudo> opt = ctr.findById(idConteudo);
+		
+		if(!opt.isEmpty()) {
+			Conteudo conteudo = opt.get();
+			ctr.delete(conteudo);
+		}
+		return "redirect:/cursos/lista/{idCurso}";
+	}
 }
