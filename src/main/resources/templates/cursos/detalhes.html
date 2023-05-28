@@ -45,6 +45,7 @@
 									<th>Id</th>
 									<th>Título</th>
 									<th>Descrição</th>
+									<th></th>
 								</tr>
 							</thead>
 							<tbody>
@@ -52,6 +53,9 @@
 									<td th:text="${ct.id}">1</td>
 									<td th:text="${ct.titulo}">Aula 1</td>
 									<td th:text="${ct.descricao}">Qualquer coisa</td>
+									<td>
+										<a th:href="@{/cursos/lista/{idCurso}/conteudos/{idConteudo}/remover(idCurso=${curso.id}, idConteudo=${ct.id})}"><i class="material-icons">delete</i></a>
+									</td>
 								</tr>
 							</tbody>
 						</table>
