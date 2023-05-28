@@ -34,6 +34,54 @@
 			</div>
 		</div>
 		
+		<div class="row">
+	    	<div class="col s12">
+	      		<div class="card blue-grey darken-1">
+	        		<div class="card-content white-text">
+	          			<span class="card-title">Conteúdo</span>
+	          			<table class="highlight">
+							<thead>
+								<tr>
+									<th>Id</th>
+									<th>Título</th>
+									<th>Descrição</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="ct : ${conteudos}">
+									<td th:text="${ct.id}">1</td>
+									<td th:text="${ct.titulo}">Aula 1</td>
+									<td th:text="${ct.descricao}">Qualquer coisa</td>
+								</tr>
+							</tbody>
+						</table>
+	        		</div>
+	      		</div>
+			</div>
+		</div>
+		
+		<div class="row">
+	    	<div class="col s12">
+	      		<div class="card blue-grey darken-1">
+	        		<div class="card-content white-text">
+	          			<span class="card-title">Adicionar Conteúdo:</span>
+	          			<form action="" method="post">
+							<div>
+								<label>Título: </label> <input type="text" name="titulo">
+							</div>
+							<div>
+								<label>Descrição: </label> <input type="text" name="descricao">
+							</div>
+							<div>
+								<button class="waves-effect waves-light btn" type="submit">Salvar</button>
+								<button class="waves-effect waves-light btn" type="reset">Limpar</button>
+							</div>
+						</form>
+	        		</div>
+	      		</div>
+			</div>
+		</div>
+		
 	</div>
 </body>
 </html>

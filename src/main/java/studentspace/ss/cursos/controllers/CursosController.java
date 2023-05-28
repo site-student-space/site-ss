@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import studentspace.ss.cursos.models.Conteudo;
 import studentspace.ss.cursos.models.Curso;
+import studentspace.ss.cursos.repositories.ConteudoRepository;
 import studentspace.ss.cursos.repositories.CursoRepository;
 
 @Controller
@@ -20,6 +22,8 @@ public class CursosController {
 
 	@Autowired
 	private CursoRepository cr;
+	@Autowired
+	private ConteudoRepository ctr;
 	
 	@GetMapping("/form")
 	public String form() {
@@ -57,6 +61,28 @@ public class CursosController {
 		Curso curso = opt.get();
 		md.addObject("curso", curso);
 		
+		List<Conteudo> conteudos = ctr.findByCurso(curso);
+		md.addObject("conteudos", conteudos);
+		
 		return md;
+	}
+	
+	@PostMapping("/lista/{idCurso}")
+	public String salvarConteudo(@PathVariable Long idCurso, Conteudo conteudo) {
+		
+		System.out.println("Id do curso: " + idCurso);
+		System.out.println(conteudo);
+		
+		Optional<Curso> opt = cr.findById(idCurso);
+		if (opt.isEmpty()) {
+			return "redirect:/cursos/lista";
+		}
+		
+		Curso curso = opt.get();
+		conteudo.setCurso(curso);
+		
+		ctr.save(conteudo);
+		
+		return "redirect:/cursos/lista/{idCurso}";
 	}
 }
