@@ -33,7 +33,10 @@
 					<td th:text="${c.descricao}">Qualquer coisa</td>
 					<td th:text="${c.data}">13/05/2023</td>
 					<td th:text="${c.valor}">50,00R$</td>
-					<td><a th:href="@{/cursos/lista/{id}/remover(id=${c.id})}"><i class="material-icons">delete</i></a></td>
+					<td>
+						<a th:href="@{/cursos/lista/{id}/selecionar(id=${c.id})}"><i class="material-icons">edit</i></a>
+						<a th:href="@{/cursos/lista/{id}/remover(id=${c.id})}"><i class="material-icons">delete</i></a>
+					</td>
 				</tr>
 			</tbody>
 		</table>

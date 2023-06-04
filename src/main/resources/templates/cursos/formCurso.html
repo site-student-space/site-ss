@@ -15,16 +15,19 @@
 	
 		<form action="/cursos" method="post">
 			<div>
-				<label>Nome: </label> <input type="text" name="nome">
+				<input type="hidden" name="id" th:value="${curso.id}" readonly="readonly">
 			</div>
 			<div>
-				<label>Descrição: </label> <input type="text" name="descricao">
+				<label>Nome: </label> <input type="text" name="nome" th:value="${curso.nome}">
 			</div>
 			<div>
-				<label>Data: </label> <input type="text" name="data">
+				<label>Descrição: </label> <input type="text" name="descricao" th:value="${curso.descricao}">
 			</div>
 			<div>
-				<label>Preço: </label> <input type="text" name="valor">
+				<label>Data: </label> <input type="text" name="data" th:value="${curso.data}">
+			</div>
+			<div>
+				<label>Preço: </label> <input type="text" name="valor" th:value="${curso.valor}">
 			</div>
 			<div>
 				<button class="waves-effect waves-light btn" type="submit">Salvar</button>

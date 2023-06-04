@@ -26,17 +26,17 @@ public class CursosController {
 	private ConteudoRepository ctr;
 	
 	@GetMapping("/form")
-	public String form() {
+	public String form(Curso curso) {
 		return "cursos/formCurso";
 	}
 
 	@PostMapping
-	public String adicionar(Curso curso) {
+	public String salvar(Curso curso) {
 		
 		System.out.println(curso);
 		cr.save(curso);
 		
-		return "cursos/curso-adicionado";
+		return "redirect:/cursos/lista";
 	}
 	
 	@GetMapping("/lista")
@@ -48,7 +48,7 @@ public class CursosController {
 	}
 	
 	@GetMapping("/lista/{id}")
-	public ModelAndView detalhar(@PathVariable Long id) {
+	public ModelAndView detalhar(@PathVariable Long id, Conteudo conteudo) {
 		ModelAndView md = new ModelAndView();
 		Optional<Curso> opt = cr.findById(id);
 		
@@ -84,6 +84,50 @@ public class CursosController {
 		ctr.save(conteudo);
 		
 		return "redirect:/cursos/lista/{idCurso}";
+	}
+	
+	@GetMapping("/lista/{id}/selecionar")
+	public ModelAndView selecionarCurso(@PathVariable Long id) {
+		ModelAndView md = new ModelAndView();
+		Optional<Curso> opt = cr.findById(id);
+		if(opt.isEmpty()) {
+			md.setViewName("redirect:/cursos/lista");
+			return md;
+		}
+		
+		Curso curso = opt.get();
+		md.setViewName("cursos/formCurso");
+		md.addObject("curso", curso);
+		
+		return md;
+	}
+	
+	@GetMapping("/lista/{idCurso}/conteudos/{idConteudo}/selecionar")
+	public ModelAndView selecionarConteudo(@PathVariable Long idCurso, @PathVariable Long idConteudo) {
+		ModelAndView md = new ModelAndView();
+		
+		Optional<Curso> optCurso = cr.findById(idCurso);
+		Optional<Conteudo> optConteudo = ctr.findById(idConteudo);
+		
+		if(optCurso.isEmpty() || optConteudo.isEmpty()) {
+			md.setViewName("redirect:/cursos/lista");
+			return md;
+		}
+		
+		Curso curso = optCurso.get();
+		Conteudo conteudo = optConteudo.get();
+		
+		if(curso.getId() != conteudo.getCurso().getId()) {
+			md.setViewName("redirect:/cursos/lista");
+			return md;
+		}
+		
+		md.setViewName("cursos/detalhes");
+		md.addObject("conteudo", conteudo);
+		md.addObject("curso", curso);
+		md.addObject("conteudos", ctr.findByCurso(curso));
+		
+		return md;
 	}
 	
 	@GetMapping("/lista/{id}/remover")
