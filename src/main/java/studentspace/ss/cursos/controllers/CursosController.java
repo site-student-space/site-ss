@@ -5,12 +5,14 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import jakarta.validation.Valid;
 import studentspace.ss.cursos.models.Conteudo;
 import studentspace.ss.cursos.models.Curso;
 import studentspace.ss.cursos.repositories.ConteudoRepository;
@@ -31,7 +33,11 @@ public class CursosController {
 	}
 
 	@PostMapping
-	public String salvar(Curso curso) {
+	public String salvar(@Valid Curso curso, BindingResult result) {
+		
+		if(result.hasErrors()) {
+			return form(curso);
+		}
 		
 		System.out.println(curso);
 		cr.save(curso);
@@ -68,7 +74,11 @@ public class CursosController {
 	}
 	
 	@PostMapping("/lista/{idCurso}")
-	public String salvarConteudo(@PathVariable Long idCurso, Conteudo conteudo) {
+	public String salvarConteudo(@PathVariable Long idCurso, @Valid Conteudo conteudo, BindingResult result) {
+		
+		if(result.hasErrors()) {
+			
+		}
 		
 		System.out.println("Id do curso: " + idCurso);
 		System.out.println(conteudo);

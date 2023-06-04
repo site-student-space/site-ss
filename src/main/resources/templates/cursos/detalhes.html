@@ -17,7 +17,7 @@
 
 		<div class="row">
 	    	<div class="col s12">
-	      		<div class="card blue-grey darken-1">
+	      		<div class="card blue darken-4">
 	        		<div class="card-content white-text">
 	          			<span class="card-title">Curso</span>
 	          			<p><strong>Id: </strong><span th:text="${curso.id}">1</span></p>
@@ -36,7 +36,7 @@
 		
 		<div class="row">
 	    	<div class="col s12">
-	      		<div class="card blue-grey darken-1">
+	      		<div class="card blue darken-4">
 	        		<div class="card-content white-text">
 	          			<span class="card-title">Conteúdo</span>
 	          			<table class="highlight">
@@ -54,8 +54,8 @@
 									<td th:text="${ct.titulo}">Aula 1</td>
 									<td th:text="${ct.descricao}">Qualquer coisa</td>
 									<td>
-										<a th:href="@{/cursos/lista/{idCurso}/conteudos/{idConteudo}/selecionar(idCurso=${curso.id}, idConteudo=${ct.id})}"><i class="material-icons">edit</i></a>
-										<a th:href="@{/cursos/lista/{idCurso}/conteudos/{idConteudo}/remover(idCurso=${curso.id}, idConteudo=${ct.id})}"><i class="material-icons">delete</i></a>
+										<a th:href="@{/cursos/lista/{idCurso}/conteudos/{idConteudo}/selecionar(idCurso=${curso.id}, idConteudo=${ct.id})}"><i class="material-icons" style="color: #ffab40">edit</i></a>
+										<a th:href="@{/cursos/lista/{idCurso}/conteudos/{idConteudo}/remover(idCurso=${curso.id}, idConteudo=${ct.id})}"><i class="material-icons" style="color: #ffab40">delete</i></a>
 									</td>
 								</tr>
 							</tbody>
@@ -67,18 +67,20 @@
 		
 		<div class="row">
 	    	<div class="col s12">
-	      		<div class="card blue-grey darken-1">
+	      		<div class="card blue darken-4">
 	        		<div class="card-content white-text">
 	          			<span class="card-title">Adicionar Conteúdo:</span>
-	          			<form th:action="@{/cursos/lista/{idCurso}(idCurso=${curso.id})}" method="post">
+	          			<form th:action="@{/cursos/lista/{idCurso}(idCurso=${curso.id})}" method="post" th:object="${conteudo}">
 	          				<div>
-								<input type="hidden" name="id" th:value="${conteudo.id}" readonly="readonly">
+								<input type="hidden" th:field="*{id}" readonly="readonly">
 							</div>
 							<div>
-								<label>Título: </label> <input type="text" name="titulo" th:value="${conteudo.titulo}">
+								<label>Título: </label> <input type="text" th:field="*{titulo}" class="grey-text text-lighten-2">
+								<p th:errors="*{titulo}"></p>
 							</div>
 							<div>
-								<label>Descrição: </label> <input type="text" name="descricao" th:value="${conteudo.descricao}">
+								<label>Descrição: </label> <input type="text" th:field="*{descricao}" class="grey-text text-lighten-2">
+								<p th:errors="*{descricao}"></p>
 							</div>
 							<div>
 								<button class="waves-effect waves-light btn" type="submit">Salvar</button>
