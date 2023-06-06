@@ -15,6 +15,9 @@
 	<div class="container">
 		<h1>Lista de Cursos</h1>
 
+		<p th:if="${mensagemS}" th:text="${mensagemS}" class="green-text"></p>
+		<p th:if="${mensagemR}" th:text="${mensagemR}" class="red-text"></p>
+
 		<table class="highlight">
 			<thead>
 				<tr>

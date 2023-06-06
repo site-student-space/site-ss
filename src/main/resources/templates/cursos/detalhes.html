@@ -15,6 +15,9 @@
 	<div class="container">
 		<h1>Detalhes do Curso</h1>
 
+		<p th:if="${mensagemS}" th:text="${mensagemS}" class="green-text"></p>
+		<p th:if="${mensagemR}" th:text="${mensagemR}" class="red-text"></p>
+
 		<div class="row">
 	    	<div class="col s12">
 	      		<div class="card blue darken-4">
@@ -76,11 +79,11 @@
 							</div>
 							<div>
 								<label>Título: </label> <input type="text" th:field="*{titulo}" class="grey-text text-lighten-2">
-								<p th:errors="*{titulo}"></p>
+								<p th:errors="*{titulo}" class="red-text"></p>
 							</div>
 							<div>
 								<label>Descrição: </label> <input type="text" th:field="*{descricao}" class="grey-text text-lighten-2">
-								<p th:errors="*{descricao}"></p>
+								<p th:errors="*{descricao}" class="red-text"></p>
 							</div>
 							<div>
 								<button class="waves-effect waves-light btn" type="submit">Salvar</button>

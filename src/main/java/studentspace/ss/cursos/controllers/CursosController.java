@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jakarta.validation.Valid;
 import studentspace.ss.cursos.models.Conteudo;
@@ -33,7 +34,7 @@ public class CursosController {
 	}
 
 	@PostMapping
-	public String salvar(@Valid Curso curso, BindingResult result) {
+	public String salvar(@Valid Curso curso, BindingResult result, RedirectAttributes attributes) {
 		
 		if(result.hasErrors()) {
 			return form(curso);
@@ -41,6 +42,7 @@ public class CursosController {
 		
 		System.out.println(curso);
 		cr.save(curso);
+		attributes.addFlashAttribute("mensagemS", "Curso salvo com sucesso!");
 		
 		return "redirect:/cursos/lista";
 	}
@@ -74,10 +76,12 @@ public class CursosController {
 	}
 	
 	@PostMapping("/lista/{idCurso}")
-	public String salvarConteudo(@PathVariable Long idCurso, @Valid Conteudo conteudo, BindingResult result) {
+	public ModelAndView salvarConteudo(@PathVariable Long idCurso, @Valid Conteudo conteudo, BindingResult result, RedirectAttributes attributes) {
+		
+		ModelAndView md = new ModelAndView();
 		
 		if(result.hasErrors()) {
-			
+			return detalhar(idCurso, conteudo);
 		}
 		
 		System.out.println("Id do curso: " + idCurso);
@@ -85,15 +89,18 @@ public class CursosController {
 		
 		Optional<Curso> opt = cr.findById(idCurso);
 		if (opt.isEmpty()) {
-			return "redirect:/cursos/lista";
+			md.setViewName("redirect:/cursos/lista");
+			return md;
 		}
 		
 		Curso curso = opt.get();
 		conteudo.setCurso(curso);
 		
 		ctr.save(conteudo);
+		attributes.addFlashAttribute("mensagemS", "Conteúdo salvo com sucesso!");
 		
-		return "redirect:/cursos/lista/{idCurso}";
+		md.setViewName("redirect:/cursos/lista/{idCurso}");
+		return md;
 	}
 	
 	@GetMapping("/lista/{id}/selecionar")
@@ -141,7 +148,7 @@ public class CursosController {
 	}
 	
 	@GetMapping("/lista/{id}/remover")
-	public String apagarCurso(@PathVariable Long id) {
+	public String apagarCurso(@PathVariable Long id, RedirectAttributes attributes) {
 		
 		Optional<Curso> opt = cr.findById(id);
 		
@@ -152,19 +159,21 @@ public class CursosController {
 			
 			ctr.deleteAll(conteudos);
 			cr.delete(curso);
+			attributes.addFlashAttribute("mensagemR", "Curso removido com sucesso!");
 		}
 		
 		return "redirect:/cursos/lista";
 	}
 	
 	@GetMapping("/lista/{idCurso}/conteudos/{idConteudo}/remover")
-	public String apagarConteudo(@PathVariable Long idCurso, @PathVariable Long idConteudo) {
+	public String apagarConteudo(@PathVariable Long idCurso, @PathVariable Long idConteudo, RedirectAttributes attributes) {
 		
 		Optional<Conteudo> opt = ctr.findById(idConteudo);
 		
 		if(!opt.isEmpty()) {
 			Conteudo conteudo = opt.get();
 			ctr.delete(conteudo);
+			attributes.addFlashAttribute("mensagemR", "Conteúdo removido com sucesso!");
 		}
 		return "redirect:/cursos/lista/{idCurso}";
 	}
