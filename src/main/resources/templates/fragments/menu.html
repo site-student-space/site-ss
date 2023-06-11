@@ -6,8 +6,8 @@
 <body>
 	<nav th:fragment="menu" class="blue darken-4">
 		<div class="nav-wrapper container">
-			<a href="/" class="brand-logo"><i class="material-icons">bubble_chart</i>STUDENT SPACE</a>
-			<a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+			<a href="/" class="brand-logo"><i class="material-icons"><img src="../../../imagens/logo/logo_wg.png" style="width: 65px; height: 65px;"></i>STUDENT SPACE</a>
+			<a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
 			<ul id="nav-mobile" class="right hide-on-med-and-down">
 				<li><a href="/">Home</a></li>
 				<li><a href="/cursos/lista">Lista de Cursos</a></li>
@@ -15,21 +15,12 @@
 			</ul>
 		</div>
 	</nav>
+	
 	<!-- Menu mobile -->
-	<ul class="sidenav" id="mobile-demo">
+	<ul th:fragment="mobile" class="sidenav" id="mobile-demo">
 		<li><a href="/">Home</a></li>
 		<li><a href="/cursos/lista">Lista de Cursos</a></li>
 		<li><a href="/cursos/form">Adicionar Curso</a></li>
 	</ul>
-	<script type="text/javascript">
-		document.addEventListener('DOMContentLoaded', function() {
-	    	var elems = document.querySelectorAll('.sidenav');
-	    	var instances = M.Sidenav.init(elems, options);
-	 	 });
-	 	 // Or with jQuery
-	 	$(document).ready(function(){
-	    	$('.sidenav').sidenav();
-	  	});
-	</script>
 </body>
 </html>

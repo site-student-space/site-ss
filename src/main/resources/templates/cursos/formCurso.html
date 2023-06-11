@@ -1,14 +1,23 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
- <!-- Compiled and minified CSS -->
+	<meta charset="UTF-8">
+ 	
+ 	<!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+	<!-- Pacote de ícones -->
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<title>STUDENT SPACE</title>
+	<!-- Logo na aba do navegador -->
+	<link rel="shotcut icon" href="../imagens/logo/logo_wig.png">
+	
+	<title>STUDENT SPACE</title>
 </head>
 <body>
-	<div th:replace="~{menu :: menu}"></div>
+	<!-- Menu - Barra de navegação -->
+	<div th:replace="~{fragments/menu :: menu}"></div>
+	
+	<!-- Menu mobile -->
+	<div th:replace="~{fragments/menu :: mobile}"></div>
 	
 	<div class="container">
 		<h1>Adicionar Curso</h1>
@@ -18,19 +27,19 @@
 				<input type="hidden" th:field="*{id}" readonly="readonly">
 			</div>
 			<div>
-				<label>Nome: </label> <input type="text" th:field="*{nome}">
+				<label>Nome: </label> <input type="text" th:field="*{nome}" placeholder="Nome do Curso">
 				<p th:errors="*{nome}" class="red-text"></p>
 			</div>
 			<div>
-				<label>Descrição: </label> <input type="text" th:field="*{descricao}">
+				<label>Descrição: </label> <input type="text" th:field="*{descricao}" placeholder="Escreva algo sobre o Curso">
 				<p th:errors="*{descricao}" class="red-text"></p>
 			</div>
 			<div>
-				<label>Data: </label> <input type="text" th:field="*{data}">
+				<label>Data: </label> <input type="date" th:field="*{data}">
 				<p th:errors="*{data}" class="red-text"></p>
 			</div>
 			<div>
-				<label>Preço: </label> <input type="text" th:field="*{valor}">
+				<label>Preço: </label> <input type="number" min="0.00" max="999.99" step="0.01" th:field="*{valor}" placeholder="999,99 R$">
 				<p th:errors="*{valor}" class="red-text"></p>
 			</div>
 			<div>
@@ -39,5 +48,18 @@
 			</div>
 		</form>
 	</div>
+	
+	<br>
+	<br>
+	<br>
+	
+	<!-- Footer - Rodapé do site -->
+	<div th:replace="~{fragments/footer :: footer}"></div>
+	
+	<!-- Compiled and minified JavaScript -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	
+	<!-- Arquivos JavaScript -->
+	<script src="../js/menu.js"></script>
 </body>
 </html>

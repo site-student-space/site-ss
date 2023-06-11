@@ -1,10 +1,15 @@
 package studentspace.ss.cursos.models;
 
+import java.time.LocalDate;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Curso {
@@ -17,8 +22,9 @@ public class Curso {
 	private String nome;
 	@NotBlank
 	private String descricao;
-	@NotBlank
-	private String data;
+	@NotNull
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private LocalDate data;
 	@NotBlank
 	private String valor;
 
@@ -46,11 +52,11 @@ public class Curso {
 		this.descricao = descricao;
 	}
 
-	public String getData() {
+	public LocalDate getData() {
 		return data;
 	}
 
-	public void setData(String data) {
+	public void setData(LocalDate data) {
 		this.data = data;
 	}
 

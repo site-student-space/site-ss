@@ -1,16 +1,23 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<!-- Compiled and minified CSS -->
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-	rel="stylesheet">
-<title>STUDENT SPACE</title>
+	<meta charset="UTF-8">
+	
+	<!-- Compiled and minified CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+	<!-- Pacote de ícones -->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<!-- Logo na aba do navegador -->
+	<link rel="shotcut icon" href="../imagens/logo/logo_wig.png">
+	
+	<title>STUDENT SPACE</title>
 </head>
 <body>
-	<div th:replace="~{menu :: menu}"></div>
+	<!-- Menu - Barra de navegação -->
+	<div th:replace="~{fragments/menu :: menu}"></div>
+	
+	<!-- Menu mobile -->
+	<div th:replace="~{fragments/menu :: mobile}"></div>
 
 	<div class="container">
 		<h1>Lista de Cursos</h1>
@@ -34,8 +41,8 @@
 					<td th:text="${c.id}">1</td>
 					<td><a th:href="@{/cursos/lista/{id}(id=${c.id})}"><span th:text="${c.nome}">Novo</span></a></td>
 					<td th:text="${c.descricao}">Qualquer coisa</td>
-					<td th:text="${c.data}">13/05/2023</td>
-					<td th:text="${c.valor}">50,00R$</td>
+					<td th:text="${#temporals.format(c.data, 'dd/MM/yyyy')}">13/05/2023</td>
+					<td th:text="${c.valor} + ' R$'">50,00R$</td>
 					<td>
 						<a th:href="@{/cursos/lista/{id}/selecionar(id=${c.id})}"><i class="material-icons">edit</i></a>
 						<a th:href="@{/cursos/lista/{id}/remover(id=${c.id})}"><i class="material-icons">delete</i></a>
@@ -44,5 +51,18 @@
 			</tbody>
 		</table>
 	</div>
+	
+	<br>
+	<br>
+	<br>
+	
+	<!-- Footer - Rodapé do site -->
+	<div th:replace="~{fragments/footer :: footer}"></div>
+	
+	<!-- Compiled and minified JavaScript -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	
+	<!-- Arquivos JavaScript -->
+	<script src="../js/menu.js"></script>
 </body>
 </html>

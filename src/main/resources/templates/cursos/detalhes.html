@@ -1,16 +1,23 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<!-- Compiled and minified CSS -->
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-	rel="stylesheet">
-<title>STUDENT SPACE</title>
+	<meta charset="UTF-8">
+	
+	<!-- Compiled and minified CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+	<!-- Pacote de ícones -->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<!-- Logo na aba do navegador -->
+	<link rel="shotcut icon" href="../../imagens/logo/logo_wig.png">
+	
+	<title>STUDENT SPACE</title>
 </head>
 <body>
-	<div th:replace="~{menu :: menu}"></div>
+	<!-- Menu - Barra de navegação -->
+	<div th:replace="~{fragments/menu :: menu}"></div>
+	
+	<!-- Menu mobile -->
+	<div th:replace="~{fragments/menu :: mobile}"></div>
 
 	<div class="container">
 		<h1>Detalhes do Curso</h1>
@@ -27,7 +34,7 @@
 	          			<p><strong>Nome: </strong><span th:text="${curso.nome}">Curso de teste</span></p>
 	          			<p><strong>Descrição: </strong><span th:text="${curso.descricao}">Testando detalhes</span></p>
 	          			<p><strong>Data: </strong><span th:text="${curso.data}">27/05/2023</span></p>
-	          			<p><strong>Valor: </strong><span th:text="${curso.valor}">60,00R$</span></p>
+	          			<p><strong>Valor: </strong><span th:text="${curso.valor} + ' R$'">60,00R$</span></p>
 	        		</div>
 	       	 		<div class="card-action">
 	          			<a href="#">This is a link</a>
@@ -78,11 +85,11 @@
 								<input type="hidden" th:field="*{id}" readonly="readonly">
 							</div>
 							<div>
-								<label>Título: </label> <input type="text" th:field="*{titulo}" class="grey-text text-lighten-2">
+								<label class="grey-text text-lighten-5">Título: </label> <input type="text" th:field="*{titulo}" class="grey-text text-lighten-2" placeholder="Digite o título do conteúdo">
 								<p th:errors="*{titulo}" class="red-text"></p>
 							</div>
 							<div>
-								<label>Descrição: </label> <input type="text" th:field="*{descricao}" class="grey-text text-lighten-2">
+								<label class="grey-text text-lighten-5">Descrição: </label> <input type="text" th:field="*{descricao}" class="grey-text text-lighten-2" placeholder="Do que se trata esse conteúdo?">
 								<p th:errors="*{descricao}" class="red-text"></p>
 							</div>
 							<div>
@@ -94,7 +101,19 @@
 	      		</div>
 			</div>
 		</div>
-		
 	</div>
+	
+	<br>
+	<br>
+	<br>
+	
+	<!-- Footer - Rodapé do site -->
+	<div th:replace="~{fragments/footer :: footer}"></div>
+	
+	<!-- Compiled and minified JavaScript -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	
+	<!-- Arquivos JavaScript -->
+	<script src="../../js/menu.js"></script>
 </body>
 </html>

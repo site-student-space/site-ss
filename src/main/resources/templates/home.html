@@ -1,18 +1,318 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
- <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+	<meta charset="UTF-8">
+	
+	<!-- Compiled and minified CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+	<!-- 2x Pacotes de ícones -->
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<title>STUDENT SPACE</title>
+	<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+	<!-- Logo na aba do navegador -->
+	<link rel="shotcut icon" href="imagens/logo/logo_wig.png">
+	
+	<title>STUDENT SPACE</title>
 </head>
 <body>
-	<div th:replace="~{menu :: menu}"></div>
+	<!-- Menu - Barra de navegação -->
+	<div th:replace="~{fragments/menu :: menu}"></div>
+	
+	<!-- Menu mobile -->
+	<div th:replace="~{fragments/menu :: mobile}"></div>
 
 	<div class="container">
-		<h1>STUDENT SPACE</h1>
-		<h2>Bem vindo ao nosso site!</h2>
+		<div class="row valign-wrapper">
+			<div class="col s4 valign-wrapper">
+				<img class="responsive-img" src="imagens/recortes/casal-4.png">
+			</div>
+			<div class="col s8">
+				<h3>Bem vindo ao nosso site!</h3>
+				<h1>STUDENT SPACE</h1>
+				<h5>Liderando através do conhecimento.</h5>
+				<h5>Clareando ideias e construindo sonhos.</h5>
+			</div>
+		</div>
 	</div>
+	
+	<!-- Gaveta de apps - Redes sociais -->
+	<div class="fixed-action-btn">
+		<a class="btn-floating btn-large red pulse z-depth-3">
+			<i class="large material-icons">apps</i>
+		</a>
+		<ul>
+		  	<li><a class="btn-floating pink darken-4" href="https://www.instagram.com/cartoriounicodelajesrn/?igshid=MTg0ZDhmNDA%3D" target="_blank"><i class='bx bxl-instagram'></i></a></li>
+		    <li><a class="btn-floating green darken-1" href="https://wa.me/5584996893196" target="_blank"><i class='bx bxl-whatsapp'></i></a></li>
+		    <li><a class="btn-floating blue" href="mailto:site.studentspace@gmail.com"><i class='bx bx-envelope'></i></a></li>
+		    <li><a class="btn-floating yellow darken-3" href="tel:+5584996893196" target="_blank"><i class="material-icons">phone</i></a></li>
+		</ul>
+	</div>
+	
+	<!-- Slider -->
+	<div class="container section">
+		<div class="row">
+			<div class="col s12">
+				<div class="slider">
+					<ul class="slides">
+				    	<li class="red">
+							<img src="https://lorempixel.com/580/250/nature/1"> <!-- random image -->
+							<div class="caption center-align">
+								<h3>Este é o nosso grande slogan!</h3>
+								<h5 class="light grey-text text-lighten-3">Aqui está o nosso pequeno slogan.</h5>
+								<br>
+								<div class="carousel-fixed-item">
+									<a class="btn waves-effect white grey-text darken-text-2">button</a>
+								</div>
+							</div>
+						</li>
+						<li class="amber">
+							<img src="https://lorempixel.com/580/250/nature/2"> <!-- random image -->
+							<div class="caption left-align">
+								<h3>Legenda Alinhada à Esquerda</h3>
+								<h5 class="light grey-text text-lighten-3">Aqui está o nosso pequeno slogan.</h5>
+								<br>
+								<div class="carousel-fixed-item">
+									<a class="btn waves-effect white grey-text darken-text-2">button</a>
+								</div>
+							</div>
+						</li>
+						<li class="green">
+							<img src="https://lorempixel.com/580/250/nature/3"> <!-- random image -->
+							<div class="caption right-align">
+								<h3>Legenda alinhada à direita</h3>
+								<h5 class="light grey-text text-lighten-3">Aqui está o nosso pequeno slogan.</h5>
+								<br>
+								<div class="carousel-fixed-item">
+									<a class="btn waves-effect white grey-text darken-text-2">button</a>
+								</div>
+							</div>
+						</li>
+						<li class="blue">
+							<img src="https://lorempixel.com/580/250/nature/4"> <!-- random image -->
+							<div class="caption center-align">
+								<h3>Este é o nosso grande slogan!</h3>
+								<h5 class="light grey-text text-lighten-3">Aqui está o nosso pequeno slogan.</h5>
+								<br>
+								<div class="carousel-fixed-item">
+									<a class="btn waves-effect white grey-text darken-text-2">button</a>
+								</div>
+							</div>
+						</li>
+					</ul>
+					<button class="btn prev waves-effect" onclick="prev()" style="position: absolute; top: 45%; left: 1%; z-index:2;"><i class="material-icons">navigate_before</i></button>
+					<button class="btn next waves-effect right" onclick="next()" style="position: absolute; top: 45%; right: 1%; z-index:2;"><i class="material-icons">navigate_next</i></button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<br><br>
+	
+	<!-- CarouselSlider -->
+	<div class="container section">
+		<div class="row">
+			<div class="col s12">
+				<div class="carousel carousel-slider center">
+			    	<div class="carousel-fixed-item center">
+				    	<a class="btn waves-effect white grey-text darken-text-2">button</a>
+				    </div>
+				    <div class="carousel-item red white-text" href="#one!">
+				    	<h2>First Panel</h2>
+				    	<p class="white-text">This is your first panel</p>
+				    </div>
+				    <div class="carousel-item amber white-text" href="#two!">
+				    	<h2>Second Panel</h2>
+				    	<p class="white-text">This is your second panel</p>
+				    </div>
+				    <div class="carousel-item green white-text" href="#three!">
+				    	<h2>Third Panel</h2>
+				    	<p class="white-text">This is your third panel</p>
+				    </div>
+				    <div class="carousel-item blue white-text" href="#four!">
+				    	<h2>Fourth Panel</h2>
+				    	<p class="white-text">This is your fourth panel</p>
+			    	</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Cards dos Videos -->
+	<div class="container">
+		<div class="row">
+			<div class="col s12 center">
+				<h3>Cursos gratuitos!</h3>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col s6 m4 l3">
+				<div class="card">
+					<div class="card-image">
+						<img src="imagens/logo/1.png">
+						<span class="card-title">Card Title</span>
+						<a class="btn-floating btn-large halfway-fab waves-effect waves-light red">
+							<i class="material-icons">play_arrow</i>
+						</a>
+					</div>
+					<div class="card-content">
+						<p>
+							I am a very simple card. I am good at containing small bits
+							of information. I am convenient because I require little markup
+							to use effectively.
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="col s6 m4 l3">
+				<div class="card">
+					<div class="card-image">
+						<img src="imagens/logo/1.png">
+						<span class="card-title">Card Title</span>
+						<a class="btn-floating btn-large halfway-fab waves-effect waves-light red">
+							<i class="material-icons">play_arrow</i>
+						</a>
+					</div>
+					<div class="card-content">
+						<p>
+							I am a very simple card. I am good at containing small bits
+							of information. I am convenient because I require little markup to
+							use effectively.
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="col s6 m4 l3">
+				<div class="card">
+					<div class="card-image">
+						<img src="imagens/logo/1.png">
+						<span class="card-title">Card Title</span>
+						<a class="btn-floating btn-large halfway-fab waves-effect waves-light red">
+							<i class="material-icons">play_arrow</i>
+						</a>
+					</div>
+					<div class="card-content">
+						<p>
+							I am a very simple card. I am good at containing small bits
+							of information. I am convenient because I require little markup to
+							use effectively.
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="col s6 m4 l3">
+				<div class="card">
+					<div class="card-image">
+						<img src="imagens/logo/1.png">
+						<span class="card-title">Card Title</span>
+						<a class="btn-floating btn-large halfway-fab waves-effect waves-light red">
+							<i class="material-icons">play_arrow</i>
+						</a>
+					</div>
+					<div class="card-content">
+						<p>
+							I am a very simple card. I am good at containing small bits
+							of information. I am convenient because I require little markup
+							to use effectively.
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="col s6 m4 l3">
+				<div class="card">
+					<div class="card-image">
+						<img src="imagens/logo/1.png">
+						<span class="card-title">Card Title</span>
+						<a class="btn-floating btn-large halfway-fab waves-effect waves-light red">
+							<i class="material-icons">play_arrow</i>
+						</a>
+					</div>
+					<div class="card-content">
+						<p>
+							I am a very simple card. I am good at containing small bits
+							of information. I am convenient because I require little markup
+							to use effectively.
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="col s6 m4 l3">
+				<div class="card">
+					<div class="card-image">
+						<img src="imagens/logo/1.png">
+						<span class="card-title">Card Title</span>
+						<a class="btn-floating btn-large halfway-fab waves-effect waves-light red">
+							<i class="material-icons">play_arrow</i>
+						</a>
+					</div>
+					<div class="card-content">
+						<p>
+							I am a very simple card. I am good at containing small bits
+							of information. I am convenient because I require little markup to
+							use effectively.
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="col s6 m4 l3">
+				<div class="card">
+					<div class="card-image">
+						<img src="imagens/logo/1.png">
+						<span class="card-title">Card Title</span>
+						<a class="btn-floating btn-large halfway-fab waves-effect waves-light red">
+							<i class="material-icons">play_arrow</i>
+						</a>
+					</div>
+					<div class="card-content">
+						<p>
+							I am a very simple card. I am good at containing small bits
+							of information. I am convenient because I require little markup to
+							use effectively.
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="col s6 m4 l3">
+				<div class="card">
+					<div class="card-image">
+						<img src="imagens/logo/1.png">
+						<span class="card-title">Card Title</span>
+						<a class="btn-floating btn-large halfway-fab waves-effect waves-light red">
+							<i class="material-icons">play_arrow</i>
+						</a>
+					</div>
+					<div class="card-content">
+						<p>
+							I am a very simple card. I am good at containing small bits
+							of information. I am convenient because I require little markup
+							to use effectively.
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Pagination - Cards dos Videos -->
+		<ul class="pagination center">
+		    <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+		    <li class="active blue darken-4"><a href="#!">1</a></li>
+		    <li class="waves-effect disabled"><a href="#!">2</a></li>
+		    <li class="waves-effect disabled"><a href="#!">3</a></li>
+		    <li class="waves-effect disabled"><a href="#!">4</a></li>
+		    <li class="waves-effect disabled"><a href="#!">5</a></li>
+		    <li class="waves-effect disabled"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+		</ul>
+	</div>
+	
+	<br>
+	<br>
+	<br>
+	
+	<!-- Footer - Rodapé do site -->
+	<div th:replace="~{fragments/footer :: footer}"></div>
+	
+	<!-- Compiled and minified JavaScript -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	
+	<!-- Arquivos JavaScript -->
+	<script src="js/menu.js"></script>
+	<script src="js/home.js"></script>
 </body>
 </html>
