@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
+
 /*-- Slider --*/
 document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.slider');
@@ -24,11 +25,28 @@ document.addEventListener('DOMContentLoaded', function() {
     };
   });
 	
-/*-- CarouselSlider --*/
+	
+/*-- Carousel de membros --*/
 document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.carousel');
     var instances = M.Carousel.init(elems, {
-    	fullWidth: true,
-        indicators: true
+		indicators: true,
 	});
+	// custom function for autoplaying 
+	let indicatorItems = document.querySelectorAll('.carousel .indicator-item'),
+	slideTime = 5000,
+	activeClass = "active";
+
+	setInterval(() => {
+		indicatorItems.forEach(el => {
+			if (el.classList.contains(activeClass)) {
+        		sib = el.nextElementSibling;
+		        if (sib == null) {
+		          indicatorItems[0].click();
+		        } else {
+		          sib.click()
+		        }
+      		}
+    	});
+	}, slideTime);
 });
